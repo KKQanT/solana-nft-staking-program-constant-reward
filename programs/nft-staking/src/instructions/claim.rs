@@ -1,7 +1,7 @@
 use anchor_lang::prelude::*;
 use anchor_spl::token;
 
-use crate::{VaultAccount, PoolAccount, REWARD_TOKEN_ADDRESS, OGAStakingError};
+use crate::{VaultAccount, PoolAccount, REWARD_TOKEN_ADDRESS, OGAStakingError, REWARD_PER_DAY};
 
 #[derive(Accounts)]
 #[instruction(
@@ -52,7 +52,7 @@ pub fn handler(
     let vault_account = &mut ctx.accounts.vault_account;
     let recent_claimed_time = &vault_account.recent_claimed_time;
 
-    let reward_amount_i64 = (now_ts - recent_claimed_time)/86400 * 109;
+    let reward_amount_i64 = (now_ts - recent_claimed_time)/86400 * REWARD_PER_DAY;
     let reward_amount_u64: u64 = reward_amount_i64 as u64;
     
     let pool_ata_token_account = &ctx.accounts.pool_ata_token_account;
