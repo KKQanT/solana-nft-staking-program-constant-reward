@@ -1,7 +1,7 @@
 use anchor_lang::prelude::*;
 use anchor_spl::token;
 
-use crate::{VaultAccount, PoolAccount, ATA_TOKEN_ADDRESS, OGAStakingError};
+use crate::{VaultAccount, PoolAccount, REWARD_TOKEN_ADDRESS, OGAStakingError};
 
 #[derive(Accounts)]
 #[instruction(
@@ -58,11 +58,11 @@ pub fn handler(
     let pool_ata_token_account = &ctx.accounts.pool_ata_token_account;
     let user_ata_token_account = &ctx.accounts.user_ata_token_account;
 
-    if pool_ata_token_account.mint.to_string() != ATA_TOKEN_ADDRESS.to_string() {
+    if pool_ata_token_account.mint.to_string() != REWARD_TOKEN_ADDRESS.to_string() {
         return err!(OGAStakingError::UnknownError);
     }
 
-    if user_ata_token_account.mint.to_string() != ATA_TOKEN_ADDRESS.to_string() {
+    if user_ata_token_account.mint.to_string() != REWARD_TOKEN_ADDRESS.to_string() {
         return err!(OGAStakingError::UnknownError);
     }
 
