@@ -52,8 +52,7 @@ pub fn handler(
     let vault_account = &mut ctx.accounts.vault_account;
     let recent_claimed_time = &vault_account.recent_claimed_time;
 
-    let reward_amount_i64 = (now_ts - recent_claimed_time)/86400 * REWARD_PER_DAY;
-    let reward_amount_u64: u64 = reward_amount_i64 as u64;
+    let reward_amount_u64: u64 = calculate_reward(recent_claimed_time, &now_ts);
     
     let pool_ata_token_account = &ctx.accounts.pool_ata_token_account;
     let user_ata_token_account = &ctx.accounts.user_ata_token_account;
@@ -90,3 +89,19 @@ pub fn handler(
 
     Ok(())
 }
+
+pub fn calculate_reward(
+    recent_claimed_time: &i64, 
+    now_ts: &i64
+) -> u64 {
+    
+    let base_number: f64=10.0;
+    let token_deimals: f64=9.0;
+
+    let ts_pass = now_ts -  recent_claimed_time;
+    let ts_pass_f64 = ts_pass as f64;
+    let reward_per_day_f64 = REWARD_PER_DAY as f64;
+    let reward_amount_f64 = ts_pass_f64/86400.0 * reward_per_day_f64 * base_number.powf(token_deimals) ;
+    let reward_amount = reward_amount_f64 as u64;
+    reward_amount
+} 
