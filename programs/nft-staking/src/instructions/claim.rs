@@ -76,7 +76,7 @@ pub fn handler(
     let cpi_ctx = CpiContext::new_with_signer(
         ctx.accounts.token_program.to_account_info(),
         token::Transfer {
-            from: user_ata_token_account.to_account_info(),
+            from: pool_ata_token_account.to_account_info(),
             to: user_ata_token_account.to_account_info(),
             authority: ctx.accounts.pool_account.to_account_info()
         },
