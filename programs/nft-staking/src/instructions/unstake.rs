@@ -135,6 +135,11 @@ pub fn handler(
         return err!(OGAStakingError::UnknownError);
     }
 
+    if vault_account.mint_address != mint_address {
+        msg!("invalid mint address in vault");
+        return  err!(OGAStakingError::UnknownError);
+    }
+
     let pool_account = &ctx.accounts.pool_account;
     let vault_nft_token_account = &mut ctx.accounts.vault_nft_token_account;
     let pool_account_key = pool_account.key();

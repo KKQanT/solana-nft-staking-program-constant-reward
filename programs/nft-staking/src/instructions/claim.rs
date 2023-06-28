@@ -57,6 +57,8 @@ pub fn handler(
     let pool_ata_token_account = &ctx.accounts.pool_ata_token_account;
     let user_ata_token_account = &ctx.accounts.user_ata_token_account;
 
+    let user = &ctx.accounts.user;
+
     if pool_ata_token_account.mint.to_string() != REWARD_TOKEN_ADDRESS.to_string() {
         return err!(OGAStakingError::UnknownError);
     }
@@ -64,6 +66,12 @@ pub fn handler(
     if user_ata_token_account.mint.to_string() != REWARD_TOKEN_ADDRESS.to_string() {
         return err!(OGAStakingError::UnknownError);
     }
+
+    if user_ata_token_account.owner != user.key() {
+        msg!("invalid token account owner");
+        return  err!(OGAStakingError::UnknownError);
+    }
+
 
     let pool_seeds = &[
       b"pool",
