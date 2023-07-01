@@ -17,5 +17,3 @@ where
 * t_now = timestamp of claiming time
 * t_claimed = timestamp of the previous claiming
 * R = constant value of reward per day
-
-This program has not been audited yet and the frontend side is still in the development.
