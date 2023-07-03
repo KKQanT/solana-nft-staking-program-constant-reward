@@ -2,14 +2,14 @@
 seeds = false
 skip-lint = false
 [programs.localnet]
-oga_staking = "STKh7qfE1zp635vi1gBReVpR4ijsbqLFgrkKyo1sbLf"
+nft_staking = "STKh7qfE1zp635vi1gBReVpR4ijsbqLFgrkKyo1sbLf"
 
 [registry]
 url = "https://api.apr.dev"
 
 [provider]
-cluster = "Localnet"
-wallet = "/home/peerakarn/.config/solana/id.json"
+cluster = "devnet"
+wallet = "update_auth.json"
 
 [scripts]
 test = "yarn run ts-mocha -p ./tsconfig.json -t 1000000 tests/**/*.ts"

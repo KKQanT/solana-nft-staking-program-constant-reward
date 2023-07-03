@@ -13,7 +13,7 @@ pub use constant::*;
 pub use errors::*;
 
 #[program]
-pub mod oga_staking {
+pub mod nft_staking {
     use super::*;
 
     pub fn init_pool(ctx: Context<InitPool>) -> Result<()> {

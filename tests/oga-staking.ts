@@ -1,6 +1,6 @@
 import * as anchor from "@project-serum/anchor";
 import { Program } from "@project-serum/anchor";
-import { OgaStaking } from "../target/types/oga_staking";
+import { OgaStaking } from "../target/types/nft_staking";
 
 describe("oga-staking", () => {
   // Configure the client to use the local cluster.

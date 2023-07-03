@@ -1,1 +1,1 @@
-pub const REWARD_PER_DAY: i64 = 100;
+pub const REWARD_PER_DAY: i64 = 109;
